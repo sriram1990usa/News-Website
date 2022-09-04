@@ -1,0 +1,373 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+         <!-- Start Main -->
+         <main>
+
+            <!-- Start inner page Banner -->
+            <div class="banner inner-banner">
+               <div class="container">
+                  <nav class="rt-breadcrumb-wrap" aria-label="breadcrumb">
+                     <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                           <a href="{% url 'base:index' %}">
+                              <i class="fas fa-home"></i>
+                              Home
+                           </a>
+                        </li>
+                        
+                        <li class="breadcrumb-item active" aria-current="page">
+                           <span class="rt-text-trunceate">
+                            Write a new article
+                        </span>
+                        </li>
+                     </ol>
+                  </nav>
+               </div>
+            </div>
+            <!-- End inner page Banner -->
+
+           
+                           <!-- start blog-post-comment -->
+                           <div class="blog-post-comment ">
+                              <form method="POST" class="rt-contact-form comments-form-style-1" enctype="multipart/form-data">
+                                <section class="container">
+                                    {% if form.errors %}
+                                    {% for field in form %}
+                                    {% for error in field.errors %} 
+                                        <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                                            <strong>Opps...</strong> {{ error|escape }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                        {% endfor %}
+                                        {% endfor %}
+                                    {% endif %} 
+                                </section>                                  {% csrf_token %}
+                                  <!-- {{form|crispy}} -->
+                                 <div class="row">
+                                    <div class="col-xl-6">
+                                       <div class="rt-form-group">
+                                          <label for="name">Title</label>
+                                         {{form.title}}
+                                          <div class="help-block with-errors"></div>
+                                       </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                       <div class="rt-form-group">
+                                          <label for="email">Category *</label>
+                                          {{form.category}}
+                                          <div class="help-block with-errors"></div>
+                                       </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                       <div class="rt-form-group">
+                                          <label for="website">Thumbnail *</label>
+                                          {{form.thumbnail}}
+
+                                          <div class="help-block with-errors"></div>
+                                       </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="rt-form-group">
+                                           <label for="website">Tags</label>
+                                           {{form.tags}}
+ 
+                                           <div class="text-muted">Sperate tags with a comma e.g tech<b>,</b> gaming</div>
+                                        </div>
+                                     </div>
+                                     <div class="col-xl-6">
+                                        <div class="rt-form-group">
+                                           <label for="website">Tags</label>
+                                           {{form.read_time}}
+ 
+                                           <div class="text-muted">Sperate tags with a comma e.g tech<b>,</b> gaming</div>
+                                        </div>
+                                     </div>
+                                    <div class="col-12">
+                                       <div class="rt-form-group">
+                                          <label for="comment">Context *</label>
+                                          {{form.content}}
+                                          <div class="help-block with-errors"></div>
+                                       </div>
+                                    </div>
+                                    
+                                    <div class="col-12">
+                                       <button type="submit" class="submit-btn">
+                                          Create Article
+                                       </button>
+                                    </div>
+                                   
+                                    <div class="form-response"></div>
+                                 </div>
+                              </form>
+                           </div>
+                           <!-- end blog-post-comment -->
+
+                        </div>
+                     </div>
+                     <!-- end col-->
+
+                  </div>
+                  <!-- end row  -->
+               </div>
+               <!-- end container -->
+            </section>
+            <!-- end rt-sidebar-section-layout-2 -->
+
+            <!-- editor-choice-section-style-1 -->
+            <section class="editor-choice-section-style-1 section-padding overflow-hidden">
+
+               <div class="container">
+                  <div class="row">
+                     <div class="col-12">
+                        <div class="titile-wrapper mb--30">
+
+                           <h2 class="rt-section-heading mb-0 flex-grow-1 me-3">
+                              <span class="rt-section-text">Related Post </span>
+                              <span class="rt-section-dot"></span>
+                              <span class="rt-section-line"></span>
+                           </h2>
+
+                           <div class="slider-navigation style-2">
+                              <i class="fas fa-chevron-left slider-btn btn-prev"></i>
+                              <i class="fas fa-chevron-right slider-btn btn-next"></i>
+                           </div>
+                        </div>
+
+                     </div>
+                  </div>
+
+                  <div class="swiper-container rt-post-slider-style-3">
+                     <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                           <div class="slide-item">
+                              <div class="rt-post-grid grid-meta">
+                                 <div class="post-img">
+                                    <a href="single-post1.html">
+                                       <img src="media/gallery/post-md_3.jpg" alt="post" width="551" height="431">
+                                    </a>
+                                 </div>
+                                 <div class="post-content">
+                                    <a href="graphics.html" class="rt-post-cat-normal">Design</a>
+                                    <h3 class="post-title">
+                                       <a href="single-post1.html">
+                                          After The Moon How Close gea
+                                          Is Space Travel Reall.
+                                       </a>
+                                    </h3>
+                                    <div class="post-meta">
+                                       <ul>
+                                          <li>
+                                             <span class="rt-meta">
+                                                by <a href="author.html" class="name">Willum Skeem</a>
+                                             </span>
+                                          </li>
+                                          <li>
+                                             <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                             </span>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end swiper slide -->
+
+                        <div class="swiper-slide">
+                           <div class="slide-item">
+                              <div class="rt-post-grid grid-meta">
+                                 <div class="post-img">
+                                    <a href="single-post1.html">
+                                       <img src="media/gallery/post-md_50.jpg" alt="post" width="551" height="431">
+                                    </a>
+                                 </div>
+                                 <div class="post-content">
+                                    <a href="graphics.html" class="rt-post-cat-normal">Design</a>
+                                    <h3 class="post-title">
+                                       <a href="single-post1.html">
+                                          After The Moon How Close gea
+                                          Is Space Travel Reall.
+                                       </a>
+                                    </h3>
+                                    <div class="post-meta">
+                                       <ul>
+                                          <li>
+                                             <span class="rt-meta">
+                                                by <a href="author.html" class="name">Willum Skeem</a>
+                                             </span>
+                                          </li>
+                                          <li>
+                                             <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                             </span>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end swiper slide -->
+
+                        <div class="swiper-slide">
+                           <div class="slide-item">
+                              <div class="rt-post-grid grid-meta">
+                                 <div class="post-img">
+                                    <a href="single-post1.html">
+                                       <img src="media/gallery/post-md_51.jpg" alt="post" width="551" height="431">
+                                    </a>
+                                 </div>
+                                 <div class="post-content">
+                                    <a href="graphics.html" class="rt-post-cat-normal">Design</a>
+                                    <h3 class="post-title">
+                                       <a href="single-post1.html">
+                                          After The Moon How Close gea
+                                          Is Space Travel Reall.
+                                       </a>
+                                    </h3>
+                                    <div class="post-meta">
+                                       <ul>
+                                          <li>
+                                             <span class="rt-meta">
+                                                by <a href="author.html" class="name">Willum Skeem</a>
+                                             </span>
+                                          </li>
+                                          <li>
+                                             <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                             </span>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end swiper slide -->
+
+                        <div class="swiper-slide">
+                           <div class="slide-item">
+                              <div class="rt-post-grid grid-meta">
+                                 <div class="post-img">
+                                    <a href="single-post1.html">
+                                       <img src="media/gallery/post-md_52.jpg" alt="post" width="551" height="431">
+                                    </a>
+                                 </div>
+                                 <div class="post-content">
+                                    <a href="graphics.html" class="rt-post-cat-normal">Design</a>
+                                    <h3 class="post-title">
+                                       <a href="single-post1.html">
+                                          After The Moon How Close gea
+                                          Is Space Travel Reall.
+                                       </a>
+                                    </h3>
+                                    <div class="post-meta">
+                                       <ul>
+                                          <li>
+                                             <span class="rt-meta">
+                                                by <a href="author.html" class="name">Willum Skeem</a>
+                                             </span>
+                                          </li>
+                                          <li>
+                                             <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                             </span>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end swiper slide -->
+
+                        <div class="swiper-slide">
+                           <div class="slide-item">
+                              <div class="rt-post-grid grid-meta">
+                                 <div class="post-img">
+                                    <a href="single-post1.html">
+                                       <img src="media/gallery/post-md_50.jpg" alt="post" width="551" height="431">
+                                    </a>
+                                 </div>
+                                 <div class="post-content">
+                                    <a href="graphics.html" class="rt-post-cat-normal">Design</a>
+                                    <h3 class="post-title">
+                                       <a href="single-post1.html">
+                                          After The Moon How Close gea
+                                          Is Space Travel Reall.
+                                       </a>
+                                    </h3>
+                                    <div class="post-meta">
+                                       <ul>
+                                          <li>
+                                             <span class="rt-meta">
+                                                by <a href="author.html" class="name">Willum Skeem</a>
+                                             </span>
+                                          </li>
+                                          <li>
+                                             <span class="rt-meta">
+                                                <i class="far fa-calendar-alt icon"></i>
+                                                DECEMBER 9, 2022
+                                             </span>
+                                          </li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- end swiper slide -->
+
+                     </div>
+                     <!-- end swiper wrapper -->
+                  </div>
+                  <!-- end swiper container + editor-choice-slider-style-1  -->
+               </div>
+               <!-- end container -->
+            </section>
+            <!-- end editor-choice-section-style-1 -->
+
+            <!-- start subscribe-area-style-1 -->
+            <div class="subscribe-section-area-style-2">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-xl-10 mx-auto">
+                        <div class="subscribe-wrap-style-6" data-bg-image="media/elements/element_16.png">
+                           <div class="subscribe-box-style-6" data-bg-image="media/elements/element_15.png">
+                              <form action="#" class="subscribe-form-style-6 gutter-15">
+                                 <div class="subscrible-heading">
+                                    <h3 class="title">
+                                       Newsletter SingUp
+                                    </h3>
+                                    <p class="mb-0">
+                                       Don’t worry, we don’t spam
+                                    </p>
+                                 </div>
+                                 <div class="rt-subs-form">
+                                    <input type="email" name="email" id="email_2" class="subscribe-form"
+                                       placeholder="enter e-mail">
+                                 </div>
+                                 <div class="btn-wrap">
+                                    <button type="submit" class="subscribe-btn">Subscribe Now </button>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                        <!-- end subscribe-wrap-style-6-->
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- end subscribe-area-style-1 -->
+
+         </main>
+         <!-- End Main -->
+{% endblock content %}

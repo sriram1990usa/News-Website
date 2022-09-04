@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- Start Main -->
+<main>
+<div>
+    <h2 class="rt-section-heading mb-0 flex-grow-1 me-3 mt-4 text-center">
+        <span class="rt-section-text text-center">Related Post </span>
+        <span class="rt-section-dot"></span>
+        <span class="rt-section-line"></span>
+    </h2>
+</div>
+    <!-- start blog-post-comment -->
+    <div class="blog-post-comment ">
+        <form method="POST" class="rt-contact-form comments-form-style-1" enctype="multipart/form-data">
+        <section class="container">
+            {% if form.errors %}
+            {% for field in form %}
+            {% for error in field.errors %} 
+                <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+                    <strong>Opps...</strong> {{ error|escape }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+                {% endfor %}
+            {% endif %} 
+        </section> 
+        {% csrf_token %}
+            <!-- {{form|crispy}} -->
+            <div class="row">
+            <div class="col-xl-6">
+                <div class="rt-form-group">
+                    {{form|crispy}}
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            
+            
+            <div class="col-12">
+                <button type="submit" class="submit-btn">
+                    Sign In
+                </button>
+            </div>
+            
+            <div class="form-response"></div>
+            <div>
+                <small>Don't have an account yet? <a href="{% url 'userauths:sign-up' %}">Sign Up</a></small>
+            </div>
+            </div>
+        </form>
+    </div>
+    <!-- end blog-post-comment -->
+
+</main>
+<!-- End Main -->
+{% endblock content %}
