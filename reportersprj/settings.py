@@ -67,18 +67,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'daeboneutf0urv',
-        'USER': 'bzdltbhmouwjkp',
-        'PASSWORD': '8b75af30eda4f9ce3e1d5f2f15ce532196e11be65243589249858cfb4a72fe58',
-        'HOST': 'ec2-54-208-139-247.compute-1.amazonaws.com',
-        'PORT': '5432'
-    }
-}
-'''
+
 AUTH_PASSWORD_VALIDATORS = [
     { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
     { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
@@ -99,20 +88,24 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 MEDIA_URL =  '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 LOGIN_REDIRECT_URL = 'base:index'
 LOGOUT_REDIRECT_URL = 'userauths:sign-in'
 LOGIN_URL = 'userauths:sign-in'
+
 # AUTH_USER_MODEL = 'classroom.User'
 AUTH_USER_MODEL = 'userauths.User'
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
 # PAYSTACK_PUBLIC_KEY = config("PAYSTACK_PUBLIC_KEY")
 mimetypes.add_type("text/css", ".css", True)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 '''
-================================
 LOGIN_URL = 'login'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
