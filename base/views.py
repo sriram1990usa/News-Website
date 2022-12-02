@@ -1,16 +1,15 @@
+from taggit.models import Tag #import at top
 from django.shortcuts import render, get_object_or_404, redirect
 from base.models import Category, Article, Comments
 from base.forms import CreateArticleForm
 
-
 from django.core.paginator import Paginator
 from django.utils.text import slugify
 from django.http import JsonResponse, HttpRequest, HttpResponse, HttpResponseRedirect
-from taggit.models import Tag #import at top
+
 from django.db.models import Count
 from django.contrib import messages
 from datetime import date
-
 
 def index(request):
 	categories = Category.objects.filter(active=True)
@@ -24,7 +23,6 @@ def index(request):
 	hot = Article.objects.filter(status="published", hot=True).order_by("-date")[:5]
 	weekly_favourite = Article.objects.filter(status="published", weekly_favourite=True).order_by("-date")[:6]
 	today_headlines = Article.objects.filter(status="published", today_headlines=True).order_by("-date")[:6]
-
 
 	context = {
 		'today_headlines': today_headlines,
@@ -72,7 +70,6 @@ def articleDetail(request, slug):
 
 	return render(request, 'base/article-detail.html', context)
 
-
 def tag_list(request, tag_slug=None):
     articles = Article.objects.filter(status="published").order_by("-date")
 
@@ -83,7 +80,6 @@ def tag_list(request, tag_slug=None):
         articles = articles.filter(tags__in=[tag])
 
     return render(request,'base/tags.html',{	'articles':articles, 'tag':tag})
-
 
 def category(request, category_slug):
     articles = Article.objects.filter(status="published").order_by("-date")
@@ -102,10 +98,7 @@ def category(request, category_slug):
     # Pagination Function
     paginator = Paginator(articles, 2)
     page_number = request.GET.get('page')
-    article_paginator = paginator.get_page(page_number)
-    
-
-    
+    article_paginator = paginator.get_page(page_number)   
 
     # context for accessing values in templates
     context = {
@@ -149,4 +142,3 @@ def ArticleComment(request, slug):
 		new_comment.save()
 		response = 'Comment Sent Successfully!'
 		return HttpResponse(response)
-

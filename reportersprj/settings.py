@@ -63,10 +63,22 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'reportersprj.wsgi.application'
+#railway
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv("PGDATABASE"), # os.environ["PGDATABASE"],
+        'USER': os.getenv("PGUSER"),
+        'PASSWORD': os.getenv("PGPASSWORD"),
+        'HOST': os.getenv("PGHOST"),
+        'PORT': os.getenv("PGPORT"),
+    }
+}
 
 DATABASE_URL = os.getenv("DATABASE_URL")
-DATABASES = {"default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),}
 '''
+DATABASES = {"default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),}
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

@@ -24,6 +24,15 @@ RATING = (
 def user_directory_path(instance, filename):
 	return 'user_{0}/{1}'.format(instance.creator.id, filename)
 
+def reverse(x):
+		t=len(x)
+		y=len(x)-1
+		z=""
+		for i in range(t):
+			z+=x[y]
+			y-=1
+		return z
+
 class Category(models.Model):
 	thumbnail = models.ImageField(upload_to="course_category_images")
 	title = models.CharField(max_length=100)
@@ -31,7 +40,7 @@ class Category(models.Model):
 	active = models.BooleanField(default=True)
 	slug = models.SlugField(unique=True)
 	date = models.DateTimeField(auto_now_add=True)
-
+ 	
 	def get_absolute_url(self):
 		return reverse("", args=[self.slug])
 
@@ -41,8 +50,6 @@ class Category(models.Model):
 	class Meta:
 		verbose_name = "Category"
 		verbose_name_plural = "Categories"
-
-
 
 class Article(models.Model):
 	thumbnail = models.ImageField(upload_to="thumbnail")
@@ -65,7 +72,6 @@ class Article(models.Model):
 	hot = models.BooleanField(default=False)
 	weekly_favourite = models.BooleanField(default=False)
 	today_headlines = models.BooleanField(default=False)
-
 	
 	class Meta:
 		verbose_name = "Article"
