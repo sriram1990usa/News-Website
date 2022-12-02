@@ -63,6 +63,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'reportersprj.wsgi.application'
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+DATABASES = {"default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),}
+'''
 #railway
 DATABASES = {
     'default': {
@@ -74,10 +79,6 @@ DATABASES = {
         'PORT': os.getenv("PGPORT"),
     }
 }
-
-DATABASE_URL = os.getenv("DATABASE_URL")
-'''
-DATABASES = {"default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),}
 
 DATABASES = {
     'default': {
