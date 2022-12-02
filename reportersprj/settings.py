@@ -1,9 +1,12 @@
-import mimetypes
 import os
-from pathlib import Path
+import mimetypes
+import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from pathlib import Path
+from dotenv import load_dotenv
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 SECRET_KEY = "CHANGE_ME"
 if 'SECRET_KEY' in os.environ:
@@ -61,22 +64,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'reportersprj.wsgi.application'
 
+DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASES = {"default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),}
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'daeboneutf0urv',
-        'USER': 'bzdltbhmouwjkp',
-        'PASSWORD': '8b75af30eda4f9ce3e1d5f2f15ce532196e11be65243589249858cfb4a72fe58',
-        'HOST': 'ec2-54-208-139-247.compute-1.amazonaws.com',
-        'PORT': '5432'
-    }
+        'NAME': os.getenv("DB_NAME"),
+        'USER': os.getenv("DB_USER"),
+        'PASSWORD': os.environ["DB_PASSWORD"],
+        'HOST': os.environ["DB_HOST"],
+        'PORT': os.environ['DB_PORT']
+}
 }
 '''
 AUTH_PASSWORD_VALIDATORS = [
@@ -95,25 +101,23 @@ USE_TZ = True
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL =  '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+mimetypes.add_type("text/css", ".css", True)
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 LOGIN_REDIRECT_URL = 'base:index'
 LOGOUT_REDIRECT_URL = 'userauths:sign-in'
+#LOGIN_URL = 'login'
 LOGIN_URL = 'userauths:sign-in'
 # AUTH_USER_MODEL = 'classroom.User'
 AUTH_USER_MODEL = 'userauths.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # PAYSTACK_SECRET_KEY = config("PAYSTACK_SECRET_KEY")
-# PAYSTACK_PUBLIC_KEY = config("PAYSTACK_PUBLIC_KEY")
-mimetypes.add_type("text/css", ".css", True)
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 '''
-================================
-LOGIN_URL = 'login'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
